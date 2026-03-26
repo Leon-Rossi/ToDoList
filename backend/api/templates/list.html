@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>ToDo</title>
+    </head>
+<body>
+
+<h1>Lists</h1>
+
+<table width=100%> 
+  {% for x in List %}
+  <tr><td> {{ x.name }} </td><td style="text-align:right"> {{ x.id }} </td></tr>
+  {% endfor %}
+</table>
+</body>
+</html>

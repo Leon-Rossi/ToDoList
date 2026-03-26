@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+APILocation="http://185.72.66.152:8000/api/"
+operation=$1
+parameter=$2
+if [[ "$operation" == "add" ]]; then
+    read -p "Text: " text
+
+    if [[ -z "${text}" ]]; then 
+        exit 1
+    fi
+
+    read -p "Priority: " priority
+    read -p "List: " list
+
+    elinks -dump "${APILocation}add/?${text:+text=$text}${priority:+&priority=$priority}${list:+&list=$list}"
+
+elif [[ "$operation" == "delete" ]]; then
+    id=$parameter
+
+    if [[ -z "${id}" ]]; then 
+        exit 1
+    fi
+    
+    elinks -dump "${APILocation}delete/?${id:+id=$id}"
+
+elif [[ "$operation" == "addList" ]]; then
+    read -p "Name: " name
+
+    if [[ -z "${name}" ]]; then 
+        exit 1
+    fi
+
+    elinks -dump "${APILocation}addList/?${name:+name=$name}"
+
+elif [[ "$operation" == "deleteList" ]]; then
+    name=$parameter
+
+    if [[ -z "${name}" ]]; then 
+        exit 1
+    fi
+    
+    elinks -dump "${APILocation}deleteList/?${name:+name=$name}"
+
+elif [[ "$operation" == "list" ]]; then
+    elinks -dump "${APILocation}list/"
+    echo
+
+else
+    elinks -dump "${APILocation}${operation:+$operation}"
+    echo 
+fi

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>ToDo</title>
+    </head>
+<body>
+
+<h1>{{ Title }}</h1>
+
+<table width=100%> 
+  {% for x in List %}
+    <tr><td> {{ x.text }} </td><td style="text-align:right"> {{ x.pub_date|date:"d-m-Y" }} </td><td style="text-align:right"> {{ x.id }} </td></tr>
+  {% endfor %}
+</table><br>
+</body>
+</html>
